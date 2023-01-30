@@ -1,45 +1,6 @@
 """
 Encodes game logic for OneUp, and manages game for players.
 """
-
-# import numpy as np
-# SCORE_MAX = np.inf
-
-"""
-Scoring for the greater guess: Map, difference to score
-0:0
-1:max
-2:max/2
-3:max/4
-4:0
-5:-1
-6:
-7:
-8:
-9:
-10:-max
-
-Interpret the (-) scores as instead being (+) going to the other player
-
-Hmm, actually simpler than I thought at first
-"""
-
-# # Map difference to score
-# scores = {
-#     0:0,
-#     1:10,
-#     2:5,
-#     3:2,
-#     4:1
-# }
-
-
-
-# Hmm, perhaps scoring should be nontransitive? Imagine a clock, sawtooth wave score, 0 at noon and 6?
-# Alternatively, asymmetric game? Not as preferable
-# Mod() each guess, and mod() the difference
-# Some +/- to get the noon and 6'oclock relationship
-"""  """
 SCORE_TOP = 10
 
 # List of ([guess a, guess b], expected score)
@@ -50,24 +11,9 @@ tests = [
     ([9,10], (0,SCORE_TOP))
 ]
 
-# TODO perhaps impose a<=b for scoring?
-# Or maybe do not need to
 def score(a:int, b:int):
-#     assert (0 <= a and a <= 10), f'Score recieved guess a outside [0, 10]'
-#     assert (0 <= b and b <= 10), f'Score recieved guess b outside [0, 10]'
-#     diff = b-a 
-#     if diff == 0: return 0
-#     score = SCORE_TOP/diff 
-#     return score
-
-# for a in range(11):
-#     for b in range(11):
-#         print(f'({a},{b}):{score(a,b)}')
-
     """
-    Copy theta idea from journal, position a always at noon and compare b
-    
-    Project guesses a, b onto a clock face.
+    Project the guesses a, b onto a clock face.
     a_arrow -> 0, b_arrow -> (b-a) % 12
     Score piecewise, define angle t [t = (b_arrow-a_arrow) / 12]:
     > If t = 0 or t = 6, score is 0
